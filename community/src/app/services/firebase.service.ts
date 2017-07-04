@@ -1,38 +1,57 @@
 import { Injectable } from '@angular/core';
-
 import { Observable } from "rxjs/Observable";
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database'
-import { AngularFireAuth } from 'angularfire2/auth'
-import * as firebase from 'firebase/app'
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+import { FirebaseApp } from 'angularfire2';
+import 'firebase/storage';
 
 @Injectable()
 export class FirebaseService {
-  authStat:FirebaseListObservable<any>
+
   public login$: Observable<firebase.User>;
+
   constructor(
     private auth: AngularFireAuth,
-    private db: AngularFireDatabase
+    private db: AngularFireDatabase,
+    private fbA:FirebaseApp
   ) {
     this.login$ = this.auth.authState;
   }
 
+  public get user(): firebase.User {
+    return this.auth.auth.currentUser;
+  };
 
-  request(list) {
-    return this.db.list(list)
+  public get mandateList() {
+    return this.db.list(`${this.user.uid}/mandate/`);
   }
-  serverValue() {
-    return firebase.database.ServerValue.TIMESTAMP
+
+  addMandat(mandat) {
+    this.mandateList.push({ name: mandat });
   }
-  google_login() {
-    return this.auth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+
+  getAuth() {
+    return this.auth
   }
-  email_login(email, password) {
+  login(email, password) {
     return this.auth.auth.signInWithEmailAndPassword(email, password);
   }
+
   logout() {
-    return this.auth.auth.signOut()
+    if (this.user) {
+      this.auth.auth.signOut();
+    }
   }
-  getAuthState() {
-    return this.auth.auth
+
+  register(email, password) {
+    return this.auth.auth.createUserWithEmailAndPassword(email, password)
+  }
+
+  resetPassword(email) {
+    return this.auth.auth.sendPasswordResetEmail(email)
+  }
+  getUploadRef(path) {
+    return this.fbA.storage().ref().child(path)
   }
 }

@@ -1,0 +1,32 @@
+<md-card class="holder">
+  <md-card-header>
+    <md-card-title>Update your profile</md-card-title>
+  </md-card-header>
+  <md-card class="photo">
+    <img md-card-image src="{{user.photo}}">
+    <input type="file" (change)="onFile($event)" #uploadElement />
+    <button md-mini-fab (click)="uploadElement.click()"><i class="material-icons">&#xE254;</i></button>
+  </md-card>
+
+  <md-card class="data">
+    <md-card-content>
+      <md-input-container>
+        <input mdInput [(ngModel)]="user.name" placeholder="User name">
+      </md-input-container>
+        <span *ngIf="error.name">{{error.name}}</span>
+    </md-card-content>
+
+    <!--<md-card-content>
+      <md-input-container>
+        <input mdInput [(ngModel)]="password" placeholder="Password" type="password">
+      </md-input-container>
+    </md-card-content>-->
+
+
+    <span *ngIf="errorMessage">{{errorMessage}}</span>
+    <md-card-actions class="sendContainer">
+      <button md-mini-fab (click)="update()"><md-icon>send</md-icon></button>
+    </md-card-actions>
+
+  </md-card>
+</md-card>

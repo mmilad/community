@@ -1,0 +1,20 @@
+<md-card>
+  <md-card-title>Register your account</md-card-title>
+
+  <md-card-content>
+    <md-input-container>
+      <input mdInput [(ngModel)]="email" placeholder="Email">
+    </md-input-container>
+  </md-card-content>
+
+  <md-card-actions *ngIf="resetError">{{resetError}}</md-card-actions>
+
+  <md-card-actions class="sendContainer">
+    <button md-mini-fab (click)="reset()"><md-icon>send</md-icon></button>
+  </md-card-actions>
+
+</md-card>
+
+<md-card-actions>
+  <button md-raised-button routeTo="back">Back</button>
+</md-card-actions>

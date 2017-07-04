@@ -1,0 +1,20 @@
+<md-toolbar>
+  <span class="example-fill-remaining-space"></span>
+    <button md-icon-button [mdMenuTriggerFor]="menu">
+      <md-icon>more_vert</md-icon>
+    </button>
+    <md-menu #menu="mdMenu">
+      <button md-menu-item routeTo="profile">
+        <md-icon><i class="material-icons">&#xE853;</i></md-icon>
+        <span>Profile Settings</span>
+      </button>
+      <button md-menu-item (click)="logout()">
+        <md-icon><i class="material-icons">&#xE8AC;</i></md-icon>
+        <span>Logout</span>
+      </button>
+      <button md-menu-item appDialogComponent="home">
+        <md-icon><i class="material-icons">&#xE8AC;</i></md-icon>
+        <span>popup</span>
+      </button>
+    </md-menu>
+</md-toolbar>

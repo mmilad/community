@@ -1,0 +1,26 @@
+
+<md-card>
+  <md-card-title>Please login</md-card-title>
+
+  <md-card-content>
+    <md-input-container>
+      <input mdInput [(ngModel)]="email" placeholder="Email">
+    </md-input-container>
+  </md-card-content>
+
+  <md-card-content>
+    <md-input-container>
+      <input mdInput [(ngModel)]="password" placeholder="Password" type="password">
+    </md-input-container>
+  </md-card-content>
+
+  <md-card-actions *ngIf="loginError">{{loginError}}</md-card-actions>
+
+  <md-card-actions class="sendContainer">
+    <button md-mini-fab (click)="login()"><md-icon>send</md-icon></button>
+  </md-card-actions>
+</md-card>
+<md-card-actions>
+  <button md-raised-button routeTo="register">Register now</button>
+  <button md-raised-button routeTo="reset">Forgot password</button>
+</md-card-actions>

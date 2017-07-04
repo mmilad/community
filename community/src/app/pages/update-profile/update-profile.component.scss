@@ -1,0 +1,50 @@
+:host {
+  width: 1000px;
+  margin: 0 auto;
+  display: block;
+  md-card {
+    &.holder {
+      display: inline-block;
+    }
+    &.photo {
+      float: left;
+      width: 200px;
+
+      &:hover {
+        button {
+          display: block;
+        }
+      }
+      button {
+        display: none;
+        float: right;
+        margin-top: -55px;
+        margin-right: -20px;
+        position: relative;
+        width: 30px;
+        height: 30px;
+        i {
+          font-size: 15px;
+          line-height: 15px;
+        }
+      }
+      input {
+        display: none;
+      }
+    }
+    &.data {
+      float: left;
+      width: 600px;
+      margin-left: 40px;
+    }
+
+    md-input-container {
+      width: 100%;
+    }
+
+    button {
+      float: right;
+    }
+  }
+
+}
